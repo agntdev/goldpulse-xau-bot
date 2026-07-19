@@ -1,19 +1,34 @@
 [
   {
-    "name": "/positions",
+    "name": "/positions shows empty state",
     "steps": [
       {
+        "send": { "text": "/positions" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "List tracked positions and current unrealized P/L"
+              "text": "No open positions yet. Tap Add to track a trade."
             }
           }
-        ],
-        "send": {
-          "text": "/positions"
-        }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "positions menu button shows empty state",
+    "steps": [
+      {
+        "send": { "callback": "positions:show" },
+        "expect": [
+          { "method": "answerCallbackQuery" },
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "No open positions yet. Tap Add to track a trade."
+            }
+          }
+        ]
       }
     ]
   }

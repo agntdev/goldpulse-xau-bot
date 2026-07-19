@@ -1,19 +1,51 @@
 [
   {
-    "name": "/chart",
+    "name": "/chart shows timeframe selection",
     "steps": [
       {
+        "send": { "text": "/chart" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Generate and send chart image for specified timeframe (1h/4h/1d/1w)"
+              "text": "Pick a timeframe for the chart:"
             }
           }
-        ],
-        "send": {
-          "text": "/chart"
-        }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "chart menu button shows timeframe selection",
+    "steps": [
+      {
+        "send": { "callback": "chart:show" },
+        "expect": [
+          { "method": "answerCallbackQuery" },
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Pick a timeframe for the chart:"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "selecting 1d timeframe shows error when API key is missing",
+    "steps": [
+      {
+        "send": { "callback": "chart:1d" },
+        "expect": [
+          { "method": "answerCallbackQuery" },
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Chart data requires an API key. Set GOLD_API_KEY in your environment."
+            }
+          }
+        ]
       }
     ]
   }

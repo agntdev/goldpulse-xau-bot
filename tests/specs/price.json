@@ -1,19 +1,34 @@
 [
   {
-    "name": "/price",
+    "name": "/price shows error when API key is missing",
     "steps": [
       {
+        "send": { "text": "/price" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Fetch current XAUUSD price with change percentage and timestamp"
+              "text": "Gold price data requires an API key. Set GOLD_API_KEY in your environment."
             }
           }
-        ],
-        "send": {
-          "text": "/price"
-        }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "price menu button shows error when API key is missing",
+    "steps": [
+      {
+        "send": { "callback": "price:show" },
+        "expect": [
+          { "method": "answerCallbackQuery" },
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Gold price data requires an API key. Set GOLD_API_KEY in your environment."
+            }
+          }
+        ]
       }
     ]
   }

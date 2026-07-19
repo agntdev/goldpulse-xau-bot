@@ -1,19 +1,35 @@
 [
   {
-    "name": "Create Alert",
+    "name": "Create Alert starts the alert creation flow",
     "steps": [
       {
+        "send": { "callback": "alert:create" },
         "expect": [
+          { "method": "answerCallbackQuery" },
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Initiate guided alert setup with price threshold, direction, and recurrence options"
+              "text": "What price should trigger the alert?\n\nEnter a number like 2345.50."
             }
           }
-        ],
-        "send": {
-          "callback": "alert:create"
-        }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "alerts menu button shows empty state",
+    "steps": [
+      {
+        "send": { "callback": "alerts:show" },
+        "expect": [
+          { "method": "answerCallbackQuery" },
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "No alerts set yet. Tap Create Alert to set one up."
+            }
+          }
+        ]
       }
     ]
   }
