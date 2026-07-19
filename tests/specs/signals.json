@@ -1,19 +1,51 @@
 [
   {
-    "name": "/signals",
+    "name": "/signals shows latest signals",
     "steps": [
       {
+        "send": { "text": "/signals" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "View latest official/algorithmic signals with optional commentary"
+              "text": "📡 <b>Latest Signals</b>\n\n🟢 <b>BUY</b> @ $2345.50\nSL: $2335.00 | TP: $2365.00\nStrong support at $2340, bullish momentum building.\n<i>2026-07-19 10:00 UTC · free</i>\n\n🔴 <b>SELL</b> @ $2355.00\nSL: $2365.00 | TP: $2335.00\nResistance at $2360 holding, expect pullback.\n<i>2026-07-19 09:00 UTC · free</i>\n\n🟢 <b>BUY</b> @ $2340.00\nSL: $2330.00 | TP: $2370.00\nPremium signal: Double bottom pattern confirmed on 4H chart.\n<i>2026-07-19 08:00 UTC · premium</i>"
             }
           }
-        ],
-        "send": {
-          "text": "/signals"
-        }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "signals menu button shows latest signals",
+    "steps": [
+      {
+        "send": { "callback": "signals:show" },
+        "expect": [
+          { "method": "answerCallbackQuery" },
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "📡 <b>Latest Signals</b>\n\n🟢 <b>BUY</b> @ $2345.50\nSL: $2335.00 | TP: $2365.00\nStrong support at $2340, bullish momentum building.\n<i>2026-07-19 10:00 UTC · free</i>\n\n🔴 <b>SELL</b> @ $2355.00\nSL: $2365.00 | TP: $2335.00\nResistance at $2360 holding, expect pullback.\n<i>2026-07-19 09:00 UTC · free</i>\n\n🟢 <b>BUY</b> @ $2340.00\nSL: $2330.00 | TP: $2370.00\nPremium signal: Double bottom pattern confirmed on 4H chart.\n<i>2026-07-19 08:00 UTC · premium</i>"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "free signals filter shows free signals",
+    "steps": [
+      {
+        "send": { "callback": "signals:free" },
+        "expect": [
+          { "method": "answerCallbackQuery" },
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "📡 <b>Free Signals</b>\n\n🟢 <b>BUY</b> @ $2345.50\nSL: $2335.00 | TP: $2365.00\nStrong support at $2340, bullish momentum building.\n<i>2026-07-19 10:00 UTC · free</i>\n\n🔴 <b>SELL</b> @ $2355.00\nSL: $2365.00 | TP: $2335.00\nResistance at $2360 holding, expect pullback.\n<i>2026-07-19 09:00 UTC · free</i>"
+            }
+          }
+        ]
       }
     ]
   }
