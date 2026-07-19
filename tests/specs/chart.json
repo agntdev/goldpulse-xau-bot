@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/chart",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Generate and send chart image for specified timeframe (1h/4h/1d/1w)"
+            }
+          }
+        ],
+        "send": {
+          "text": "/chart"
+        }
+      }
+    ]
+  }
+]
